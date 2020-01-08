@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
 	--with-jpeg-dir=/usr/src/php/ext/ \
 	--with-png-dir=/usr/src/php/ext/ \
     && docker-php-ext-install -j$(nproc) gd \
+	zip \
 	pdo_pgsql
 
 RUN curl -s http://getcomposer.org/installer | php && \
