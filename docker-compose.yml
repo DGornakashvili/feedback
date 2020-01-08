@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  fpm:
+    build: ./docker/fpm
+    volumes:
+      - ./docker/fpm/app:/var/www/html
+    depends_on:
+      - db
+    ports:
+      - 9000:9000
+    networks:
+      - net
+
+  nginx:
+    build: ./docker/nginx
+    depends_on:
+      - fpm
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/fpm/app:/var/www/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - net
+
+  db:
+    build: ./docker/db
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge
