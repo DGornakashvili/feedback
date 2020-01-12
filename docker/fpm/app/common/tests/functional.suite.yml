@@ -1,0 +1,8 @@
+suite_namespace: common\tests\functional
+actor: FunctionalTester
+modules:
+    enabled:
+        - PhpBrowser:
+            url: http://back.dev.local/
+        - Yii2:
+            part: [init, orm, fixtures]
