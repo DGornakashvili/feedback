@@ -2,7 +2,7 @@
 return [
     'components' => [
         'db' => [
-            'dsn' => 'pgsql:host=0.0.0.0;dbname=postgres',
+            'dsn' => 'pgsql:host=db;dbname=postgres',
         ],
     ],
 ];
